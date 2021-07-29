@@ -218,8 +218,9 @@ void StructuredEikonal::map_generator() {
   }
 }
 
-void StructuredEikonal::setSeeds(std::vector<std::array<size_t, 3> > seeds) {
+void StructuredEikonal::setSeeds(std::vector<std::array<size_t, 3> > seeds, std::vector<DOUBLE> values) {
   this->seeds_ = seeds;
+	this->seed_values_ = values;
 }
 
 void StructuredEikonal::useSeeds() {
@@ -266,7 +267,7 @@ void StructuredEikonal::useSeeds() {
                   if (this->seeds_[i][0] == x && 
                     this->seeds_[i][1] == y && 
                     this->seeds_[i][2] == z) {
-                    this->memoryStruct_.h_sol[idx] = 0;
+                    this->memoryStruct_.h_sol[idx] = this->seed_values_[i];
                     isSeedBlock = true;
                     if (this->verbose_) {
                       printf("%d is Selected bt source \n",idx);

@@ -17,7 +17,7 @@ public:
   void setMapType(size_t t);
   void setItersPerBlock(size_t t);
   void setSpeeds(std::vector<std::vector<std::vector<double> > > speed);
-  void setSeeds(std::vector<std::array<size_t, 3> > seeds);
+  void setSeeds(std::vector<std::array<size_t, 3> > seeds, std::vector<DOUBLE> values);
   void writeNRRD(std::string filename);
   std::vector< std::vector< std::vector<double> > > getFinalResult();
   /**
@@ -45,6 +45,7 @@ private:
   size_t itersPerBlock_, solverType_;
   std::vector<std::vector<std::vector<double> > > speeds_;
   std::vector<std::array<size_t, 3> > seeds_;
+	std::vector<DOUBLE> seed_values_; // Numerical value of seeds (could be negative as well)
   CUDAMEMSTRUCT memoryStruct_;
 };
 

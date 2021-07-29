@@ -41,7 +41,19 @@ int main(int argc, char** argv) {
   data.setDims(size,size,size);
   data.setMapType(type);
   data.setItersPerBlock(itersPerBlock);
-  data.setSeeds({ { { { 0, 0, 0 } } } }); // set 0 0 0 voxel to zero
+	std::vector<std::array<size_t, 3> > seeds = {{size/2, size/2, size/2}, 
+																							{0,0,0},
+																							{size-1, 0, 0},
+																							{size-1, size-1, 0},
+																							{0, size-1, 0},
+																							{0,0,size-1},
+																							{size-1, 0, size-1},
+																							{size-1, size-1, size-1},
+																							{0, size-1, size-1}
+																							};
+
+	std::vector<DOUBLE> seed_values = {-100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0};
+  data.setSeeds(seeds, seed_values); 
   data.solveEikonal();
   data.writeNRRD(name);
   return 0;
